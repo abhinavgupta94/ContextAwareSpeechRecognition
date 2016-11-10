@@ -1,0 +1,11 @@
+# ContextAwareSpeechRecognition
+
+To run a single fold (including video features)---here 1 represents first fold can be (1-5):
+qsub -q gpu run_video1.sh      
+
+To run a single fold (baseline)---here 1 represents first fold can be (1-5):
+qsub -q gpu run_baseline1.sh
+
+Place Features present in /data/ASR5/abhinav5/PlacesAlexNet_360h
+Object Features present in /data/ASR5/abhinav5/YTubeV2_360h
+Data present in /data/ASR5/abhinav5/train_360h

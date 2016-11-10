@@ -1,0 +1,31 @@
+The type of video features used are 100 dim place features (PCA from 205) along with 100 dim object features (PCA from 1000) concatenated to each other. So the input layer consists of (in that order): Place features, Object features, Embedding layer.
+The batch size is kept fixed at 128.
+The embedding layer size is kept at 900.
+
+I have listed some statistics about the datasets which may be useful for the comparison of datasets:
+
+90h
+vocab size-20607
+used videos-3934
+total utterances-58438
+
+360h
+vocab size-34473
+used videos-15016
+total utterances-220802
+
+480h
+vocab size-38540
+used videos-19932
+total utterances-293983
+
+I am using a 2 layer BiLSTM model (with 4x1024 LSTM units) for my experiments. The 2 layers have the forward and the backward layers concatenated to each other to form 2 layers of 2048 units. The nonlinearities used in both the layers is tanh. I also use a dropout of 50% for both layers. The gradient clipping parameter is set to 100 to tackle the vanishing gradient problem.
+
+For learning, I use Adagrad (Adaptive gradient) a version of SGD. The cost function used was categorical-crossentropy (negative log likelihood).
+The no. of epochs was set to 17 and the model was still showing signs of improvement (decreasing perplexity). I used 5-fold cross-validation for training.
+The learning rate was initialized at 0.01. After each epoch, if the average cost of the validation set is less than the previous one, then it gets divided by a factor of 2.
+
+No Regularization was used for this experiment as both L2 and L1 including their interpolation gave worse results.
+The output softmax layer is of the same size as that of the vocabulary.
+
+The model was trained using Lasagne (a deep NN toolkit based on Theano).
