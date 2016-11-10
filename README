@@ -1,4 +1,6 @@
-# ContextAwareSpeechRecognition
+#ContextAwareSpeechRecognition
+
+Details about the project can be found in Writeup
 
 To run a single fold (including video features)---here 1 represents first fold can be (1-5):
 qsub -q gpu run_video1.sh      
